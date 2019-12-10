@@ -1,0 +1,31 @@
+<h1>Price Lookup</h1>
+<br>
+
+<% if !@lookup["DISPLAY"].nil? %>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">24hr High</th>
+        <th scope="col">24hr Low</th>
+        <th scope="col">Market Cap</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lookup["DISPLAY"].each do |key, value| %>
+      <tr>
+        <td><%= key %></td>
+        <td><%= value["USD"]["PRICE"] %></td>
+        <td><%= value["USD"]["HIGHDAY"] %></td>
+        <td><%= value["USD"]["LOWDAY"] %></td>
+        <td><%= value["USD"]["MKTCAP"] %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% elsif @symbol %>
+  <h5><i>No results found for "<%= @symbol %>"...</i></h5>
+<% else %>
+  <h5><i>Enter a crypto symbol in the form above for pricing...</i></h5>
+<% end %>

@@ -1,0 +1,41 @@
+
+<table class="table table-sm table-striped table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">24hr High</th>
+      <th scope="col">24hr Low</th>
+      <th scope="col">Market Cap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @prices["DISPLAY"].each do |key, value| %>
+    <tr>
+      <td><%= key %></td>
+      <td><%= value["USD"]["PRICE"] %></td>
+      <td><%= value["USD"]["HIGHDAY"] %></td>
+      <td><%= value["USD"]["LOWDAY"] %></td>
+      <td><%= value["USD"]["MKTCAP"] %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<div class="container">
+  <div class="row">
+    <% @news['Data'].each do |item| %>
+        <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="<%= item['imageurl'] %>" alt="<%= item['source'] %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= item['title'] %></h5>
+              <p class="card-text"><%= truncate(item['body'], length: 300) %></p>
+              <a href="<%= item['url'] %>" class="btn btn-secondary">Read More...</a>
+            </div>
+        </div>
+        </div>
+    <% end %>
+  </div>
+</div>
